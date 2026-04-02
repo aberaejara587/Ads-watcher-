@@ -6,7 +6,6 @@
     <title>Magic Feet Ad Section</title>
     
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
     <script src="https://richinfo.co/richpartners/telegram/js/tg-ob.js"></script>
     <script>
         window.TelegramAdsController = new TelegramAdsController();
@@ -52,6 +51,11 @@
             padding: 15px;
             box-shadow: 0 10px 25px var(--shadow);
             border: 1px solid rgba(128, 128, 128, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .ad-wrapper:hover {
+            transform: scale(1.02);
         }
 
         .ad-label {
@@ -98,11 +102,12 @@
 </head>
 <body>
 
-    <div class="ad-wrapper">
+    <div class="ad-wrapper" aria-label="Magic Feet Football Advertisement">
         <div class="ad-label">
             <span>Magic Feet Football</span>
             <span class="ad-badge">AD</span>
         </div>
+
 
         <div id="richads-container">
             <span class="loading-text">Beeksisni fe'amaa jira...</span>
@@ -120,3 +125,8 @@
     </script>
 </body>
 </html>
+
+
+
+
+        
