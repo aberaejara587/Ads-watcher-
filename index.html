@@ -19,7 +19,6 @@
             --shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* Dark Mode Settings */
         body.tg-dark {
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             --card-bg: #1e293b;
@@ -54,7 +53,6 @@
             box-shadow: var(--shadow);
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            transition: transform 0.2s ease;
         }
 
         .ad-header {
@@ -80,30 +78,39 @@
             padding: 4px 10px;
             border-radius: 50px;
             font-weight: 700;
-            border: 1px solid rgba(0, 136, 204, 0.2);
         }
 
         #richads-display {
-            min-height: 200px;
+            min-height: 250px;
             background: rgba(0,0,0,0.02);
             border-radius: 16px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
             border: 1px dashed var(--text-sub);
         }
 
         .loader {
             color: var(--text-sub);
             font-size: 13px;
-            font-weight: 500;
             animation: breathe 2s infinite ease-in-out;
         }
 
         @keyframes breathe {
-            0%, 100% { opacity: 0.4; transform: scale(0.98); }
-            50% { opacity: 1; transform: scale(1); }
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        .btn-show {
+            margin-top: 15px;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -116,8 +123,10 @@
         </div>
 
         <div id="richads-display">
-            <div class="loader">Loading Magic...</div>
+            <div class="loader" id="status-text">Beeksisa fiduuf jira...</div>
         </div>
+        
+        <button class="btn-show" onclick="showAd()">Beeksisa Ilaali</button>
     </div>
 
     <script>
@@ -125,27 +134,42 @@
         tele.ready();
         tele.expand();
 
-        // Dark mode setup
         if (tele.colorScheme === 'dark') {
             document.body.classList.add('tg-dark');
         }
 
-        // --- ADS LOGIC (RAKKOO KEE KANAAN SIRREESSI) ---
-        try {
-            window.TelegramAdsController = new TelegramAdsController();
-            window.TelegramAdsController.initialize({
-                pubId: "1004916",
-                appId: "6897",
-            });
-
-            // Beeksisa akka mul'atu ajajuu (Show Ad)
-            // RichAds 'Rewarded' ykn 'Interstitial' yoo ta'e kanaan waama:
-            window.TelegramAdsController.show(); 
-
-        } catch (e) {
-            console.error("Ads failed to load", e);
-            document.getElementById('richads-display').innerHTML = "Check connection...";
+        // --- ADS LOGIC ---
+        function initAds() {
+            try {
+                // RichAds Controller Init
+                window.tgObj = new TelegramAdsController();
+                tgObj.initialize({
+                    pubId: "1004916", // ID kee kan sirrii ta'u mirkaneeffadhu
+                    appId: "6897",
+                    onLoad: () => {
+                        document.getElementById('status-text').innerHTML = "Beeksisi qophaayeera!";
+                        showAd(); // Akkuma qophaayeen akka arguuf
+                    },
+                    onFailed: (err) => {
+                        console.error("Ads failed", err);
+                        document.getElementById('status-text').innerHTML = "Beeksisa fiduun hin danda'amne.";
+                    }
+                });
+            } catch (e) {
+                console.error("SDK Error:", e);
+            }
         }
+
+        function showAd() {
+            if (window.tgObj) {
+                window.tgObj.show();
+            } else {
+                alert("SDK qophaa'aa miti!");
+            }
+        }
+
+        // Jalqabarratti waami
+        window.onload = initAds;
     </script>
 </body>
 </html>
