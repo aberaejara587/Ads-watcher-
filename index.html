@@ -3,130 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Feet Ad Section</title>
+    <title>Magic Feet Football - Ads</title>
     
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://richinfo.co/richpartners/telegram/js/tg-ob.js"></script>
-    <script>
-        window.TelegramAdsController = new TelegramAdsController();
-        window.TelegramAdsController.initialize({
-            pubId: "1004916",
-            appId: "6897",
-        });
-    </script>
-
+    
     <style>
         :root {
-            --bg-color: #f4f7f6;
+            --primary: #0088cc;
+            --primary-dark: #006699;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             --card-bg: #ffffff;
-            --text-main: #222222;
-            --text-sub: #888888;
-            --accent: #0088cc;
-            --shadow: rgba(0, 0, 0, 0.05);
+            --text-color: #2d3436;
+            --text-sub: #636e72;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
+        /* Dark Mode Settings */
         body.tg-dark {
-            --bg-color: #18222d;
-            --card-bg: #212d3b;
-            --text-main: #ffffff;
-            --text-sub: #aaaaaa;
-            --shadow: rgba(0, 0, 0, 0.3);
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-sub: #94a3b8;
+            --shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            font-family: 'Inter', -apple-system, sans-serif;
             margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .ad-wrapper {
-            width: 100%;
-            max-width: 400px;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 15px;
-            box-shadow: 0 10px 25px var(--shadow);
-            border: 1px solid rgba(128, 128, 128, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .ad-wrapper:hover {
-            transform: scale(1.02);
-        }
-
-        .ad-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 1px dashed var(--text-sub);
-        }
-
-        .ad-label span {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--text-sub);
-        }
-
-        .ad-badge {
-            background: var(--accent);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 5px;
-        }
-
-        #richads-container {
-            min-height: 100px;
-            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        .loading-text {
-            font-size: 13px;
+        .ad-container {
+            width: 100%;
+            max-width: 380px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .ad-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .brand-name {
+            font-size: 14px;
+            font-weight: 800;
+            background: linear-gradient(to right, #0088cc, #00d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .ad-badge {
+            font-size: 10px;
+            background: rgba(0, 136, 204, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-weight: 700;
+            border: 1px solid rgba(0, 136, 204, 0.2);
+        }
+
+        #richads-display {
+            min-height: 200px;
+            background: rgba(0,0,0,0.02);
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 1px dashed var(--text-sub);
+        }
+
+        .loader {
             color: var(--text-sub);
-            animation: pulse 1.5s infinite;
+            font-size: 13px;
+            font-weight: 500;
+            animation: breathe 2s infinite ease-in-out;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+        @keyframes breathe {
+            0%, 100% { opacity: 0.4; transform: scale(0.98); }
+            50% { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
-    <div class="ad-wrapper" aria-label="Magic Feet Football Advertisement">
-        <div class="ad-label">
-            <span>Magic Feet Football</span>
-            <span class="ad-badge">AD</span>
+    <div class="ad-container">
+        <div class="ad-header">
+            <div class="brand-name">Magic Feet</div>
+            <div class="ad-badge">SPONSORED</div>
         </div>
 
-
-        <div id="richads-container">
-            <span class="loading-text">Beeksisni fe'amaa jira...</span>
+        <div id="richads-display">
+            <div class="loader">Loading Magic...</div>
         </div>
     </div>
 
     <script>
         const tele = window.Telegram.WebApp;
         tele.ready();
-        tele.expand(); 
-        
+        tele.expand();
+
+        // Dark mode setup
         if (tele.colorScheme === 'dark') {
             document.body.classList.add('tg-dark');
+        }
+
+        // --- ADS LOGIC (RAKKOO KEE KANAAN SIRREESSI) ---
+        try {
+            window.TelegramAdsController = new TelegramAdsController();
+            window.TelegramAdsController.initialize({
+                pubId: "1004916",
+                appId: "6897",
+            });
+
+            // Beeksisa akka mul'atu ajajuu (Show Ad)
+            // RichAds 'Rewarded' ykn 'Interstitial' yoo ta'e kanaan waama:
+            window.TelegramAdsController.show(); 
+
+        } catch (e) {
+            console.error("Ads failed to load", e);
+            document.getElementById('richads-display').innerHTML = "Check connection...";
         }
     </script>
 </body>
 </html>
-
-
-
-
-        
