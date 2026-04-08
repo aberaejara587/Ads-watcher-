@@ -3,131 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Feet Football - Ads</title>
+    <title>Magic Feet Ad Section - Monetag</title>
     
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://richinfo.co/richpartners/telegram/js/tg-ob.js"></script>
     
+    <script src='//libtl.com/sdk.js' data-zone='10850188' data-sdk='show_10850188'></script>
+
     <style>
         :root {
-            --primary: #0088cc;
-            --primary-dark: #006699;
-            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --bg-color: #f4f7f6;
             --card-bg: #ffffff;
-            --text-color: #2d3436;
-            --text-sub: #636e72;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --text-main: #222222;
+            --text-sub: #888888;
+            --accent: #FF9800; /* Monetag Color Theme */
+            --shadow: rgba(0, 0, 0, 0.05);
+            --btn-green: #2ecc71;
         }
 
         body.tg-dark {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --text-sub: #94a3b8;
-            --shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
+            --bg-color: #18222d;
+            --card-bg: #212d3b;
+            --text-main: #ffffff;
+            --text-sub: #aaaaaa;
+            --shadow: rgba(0, 0, 0, 0.3);
         }
 
         body {
-            background: var(--bg-gradient);
-            color: var(--text-color);
-            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .ad-container {
+        .ad-wrapper {
             width: 100%;
-            max-width: 380px;
+            max-width: 400px;
             background: var(--card-bg);
-            border-radius: 24px;
+            border-radius: 20px;
             padding: 20px;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 25px var(--shadow);
+            border: 1px solid rgba(128, 128, 128, 0.1);
             text-align: center;
-        }
-
-        .ad-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-bottom: 20px;
         }
 
-        .brand-name {
-            font-size: 14px;
-            font-weight: 800;
-            background: linear-gradient(to right, #0088cc, #00d2ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .ad-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--text-sub);
+        }
+
+        .ad-label span {
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
+            color: var(--text-sub);
         }
 
         .ad-badge {
-            font-size: 10px;
-            background: rgba(0, 136, 204, 0.1);
-            color: var(--primary);
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-weight: 700;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 5px;
         }
 
-        #richads-display {
-            min-height: 250px;
-            background: rgba(0,0,0,0.02);
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 1px dashed var(--text-sub);
+        .btn-container {
+            display: grid;
+            gap: 10px;
+            width: 100%;
         }
 
-        .loader {
-            color: var(--text-sub);
-            font-size: 13px;
-            animation: breathe 2s infinite ease-in-out;
-        }
-
-        @keyframes breathe {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
-        }
-
-        .btn-show {
-            margin-top: 15px;
-            padding: 12px 24px;
-            background: var(--primary);
+        button {
+            background-color: var(--accent);
             color: white;
             border: none;
+            padding: 12px;
             border-radius: 12px;
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: bold;
             cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .reward-btn {
+            background-color: var(--btn-green);
+        }
+
+        .loading-text {
+            font-size: 13px;
+            color: var(--text-sub);
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="ad-container">
-        <div class="ad-header">
-            <div class="brand-name">Magic Feet</div>
-            <div class="ad-badge">SPONSORED</div>
+    <div class="ad-wrapper">
+        <div class="ad-label">
+            <span>Magic Feet Football</span>
+            <span class="ad-badge">EARN COIN</span>
         </div>
 
-        <div id="richads-display">
-            <div class="loader" id="status-text">Beeksisa fiduuf jira...</div>
+        <div class="btn-container">
+            <button class="reward-btn" onclick="showRewarded()">📺 Beeksisni Ilaali (Reward)</button>
+            
+            <button onclick="showInterstitial()">✨ Beeksisni Gabaabaa</button>
         </div>
-        
-        <button class="btn-show" onclick="showAd()">Beeksisa Ilaali</button>
+
+        <p class="loading-text" id="status-text">Beeksisni qophaa'aa jira...</p>
     </div>
+
+    <div id="monetag-banner-container"></div>
 
     <script>
         const tele = window.Telegram.WebApp;
@@ -138,38 +134,42 @@
             document.body.classList.add('tg-dark');
         }
 
-        // --- ADS LOGIC ---
-        function initAds() {
-            try {
-                // RichAds Controller Init
-                window.tgObj = new TelegramAdsController();
-                tgObj.initialize({
-                    pubId: "1004916", // ID kee kan sirrii ta'u mirkaneeffadhu
-                    appId: "6897",
-                    onLoad: () => {
-                        document.getElementById('status-text').innerHTML = "Beeksisi qophaayeera!";
-                        showAd(); // Akkuma qophaayeen akka arguuf
-                    },
-                    onFailed: (err) => {
-                        console.error("Ads failed", err);
-                        document.getElementById('status-text').innerHTML = "Beeksisa fiduun hin danda'amne.";
-                    }
-                });
-            } catch (e) {
-                console.error("SDK Error:", e);
-            }
+        // 1. Rewarded Ad Function
+        function showRewarded() {
+            document.getElementById('status-text').innerText = "Beeksisni fe'amaa jira...";
+            
+            show_10850188('pop').then(() => {
+                // Beeksisni yoo dhumate reward asitti kenni
+                document.getElementById('status-text').innerText = "Baay'ee gaari! Badhaasa kee fudhadhu.";
+                alert("Gammadi! Badhaasa kee fudhatteetta.");
+                
+                // Fakkeenyaaf: updateCoins(10);
+            }).catch(e => {
+                document.getElementById('status-text').innerText = "Dogoggorri uumameera.";
+                console.error("Ad error:", e);
+            });
         }
 
-        function showAd() {
-            if (window.tgObj) {
-                window.tgObj.show();
-            } else {
-                alert("SDK qophaa'aa miti!");
-            }
+        // 2. Interstitial Ad Function
+        function showInterstitial() {
+            show_10850188().then(() => {
+                console.log("Interstitial closed");
+            });
         }
 
-        // Jalqabarratti waami
-        window.onload = initAds;
+        // 3. In-App Interstitial (Otomatiikaan kan dhufu)
+        // Kun akkuma App-ichi banameen ofiin ni dhufa
+        show_10850188({
+            type: 'inApp',
+            inAppSettings: {
+                frequency: 2,
+                capping: 0.1,
+                interval: 30,
+                timeout: 5,
+                everyPage: false
+            }
+        });
+
     </script>
 </body>
 </html>
