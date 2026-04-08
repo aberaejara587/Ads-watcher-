@@ -3,162 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Feet Ad Section - Monetag</title>
+    <title>Magic Feet Tasks</title>
     
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     
     <script src='//libtl.com/sdk.js' data-zone='10850188' data-sdk='show_10850188'></script>
 
     <style>
-        :root {
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
-            --text-main: #222222;
-            --text-sub: #888888;
-            --accent: #FF9800; /* Monetag Color Theme */
-            --shadow: rgba(0, 0, 0, 0.05);
-            --btn-green: #2ecc71;
-        }
-
-        body.tg-dark {
-            --bg-color: #18222d;
-            --card-bg: #212d3b;
-            --text-main: #ffffff;
-            --text-sub: #aaaaaa;
-            --shadow: rgba(0, 0, 0, 0.3);
-        }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: #000000; /* Dark background like the screenshot */
+            color: #ffffff;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
-        .ad-wrapper {
-            width: 100%;
-            max-width: 400px;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 10px 25px var(--shadow);
-            border: 1px solid rgba(128, 128, 128, 0.1);
-            text-align: center;
-            margin-bottom: 20px;
+        .header {
+            margin-bottom: 25px;
         }
 
-        .ad-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 1px dashed var(--text-sub);
+        .header h1 {
+            font-size: 28px;
+            margin: 0;
         }
 
-        .ad-label span {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--text-sub);
+        .header p {
+            color: #888;
+            font-size: 14px;
+            margin: 5px 0;
         }
 
-        .ad-badge {
-            background: var(--accent);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 5px;
-        }
-
-        .btn-container {
-            display: grid;
-            gap: 10px;
-            width: 100%;
-        }
-
-        button {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 15px;
+        .section-title {
+            font-size: 20px;
             font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s;
+            margin: 20px 0 10px 0;
         }
 
-        button:active {
+        /* Task Row Style */
+        .task-card {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 15px;
+            background-color: #1a1a1a; /* Dark gray for rows */
+            transition: background 0.3s;
+        }
+
+        /* Orange highlight for the first task like screenshot */
+        .task-card.highlight {
+            background-color: #f39c12; 
+            color: #000;
+        }
+
+        .task-icon {
+            font-size: 35px;
+            margin-right: 15px;
+        }
+
+        .task-info {
+            flex-grow: 1;
+        }
+
+        .task-info h4 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .task-info p {
+            margin: 2px 0 0 0;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .claim-btn {
+            background-color: #ffffff;
+            color: #000;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .claim-btn:active {
             transform: scale(0.95);
         }
 
-        .reward-btn {
-            background-color: var(--btn-green);
+        .timer-icon {
+            font-size: 24px;
+            color: #888;
         }
 
-        .loading-text {
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-top: 10px;
+        /* Bottom Nav Dummy */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            background: #000;
+            border-top: 1px solid #222;
         }
     </style>
 </head>
 <body>
 
-    <div class="ad-wrapper">
-        <div class="ad-label">
-            <span>Magic Feet Football</span>
-            <span class="ad-badge">EARN COIN</span>
-        </div>
-
-        <div class="btn-container">
-            <button class="reward-btn" onclick="showRewarded()">📺 Beeksisni Ilaali (Reward)</button>
-            
-            <button onclick="showInterstitial()">✨ Beeksisni Gabaabaa</button>
-        </div>
-
-        <p class="loading-text" id="status-text">Beeksisni qophaa'aa jira...</p>
+    <div class="header">
+        <h1>Tasks</h1>
+        <p>Get rewards for actions</p>
     </div>
 
-    <div id="monetag-banner-container"></div>
+    <div class="task-card highlight">
+        <div class="task-icon">🤩</div>
+        <div class="task-info">
+            <h4>Watch short ads</h4>
+            <p>Rewarded Interstitial</p>
+        </div>
+        <button class="claim-btn" onclick="runRewarded()">Claim</button>
+    </div>
+
+    <div class="task-card">
+        <div class="task-icon">😎</div>
+        <div class="task-info">
+            <h4>Click to get reward</h4>
+            <p>Rewarded Popup</p>
+        </div>
+        <button class="claim-btn" onclick="runPopup()">Claim</button>
+    </div>
+
+    <div class="section-title">Daily</div>
+    <p style="color: #666; font-size: 13px; margin-top: -5px;">After time actions</p>
+
+    <div class="task-card">
+        <div class="task-icon">👀</div>
+        <div class="task-info">
+            <h4>Watch video</h4>
+            <p>In-App Interstitial</p>
+        </div>
+        <div class="timer-icon">🕒</div>
+    </div>
 
     <script>
-        const tele = window.Telegram.WebApp;
-        tele.ready();
-        tele.expand();
+        const tg = window.Telegram.WebApp;
+        tg.ready();
 
-        if (tele.colorScheme === 'dark') {
-            document.body.classList.add('tg-dark');
-        }
-
-        // 1. Rewarded Ad Function
-        function showRewarded() {
-            document.getElementById('status-text').innerText = "Beeksisni fe'amaa jira...";
-            
-            show_10850188('pop').then(() => {
-                // Beeksisni yoo dhumate reward asitti kenni
-                document.getElementById('status-text').innerText = "Baay'ee gaari! Badhaasa kee fudhadhu.";
-                alert("Gammadi! Badhaasa kee fudhatteetta.");
-                
-                // Fakkeenyaaf: updateCoins(10);
-            }).catch(e => {
-                document.getElementById('status-text').innerText = "Dogoggorri uumameera.";
-                console.error("Ad error:", e);
-            });
-        }
-
-        // 2. Interstitial Ad Function
-        function showInterstitial() {
+        // 1. Rewarded Interstitial
+        function runRewarded() {
             show_10850188().then(() => {
-                console.log("Interstitial closed");
+                alert('Qabxii 10 argatteetta! (Reward Claimed)');
+                // Asitti koodii database kee update gochuuf fayyadami
+            }).catch(e => {
+                console.error("Ad error", e);
             });
         }
 
-        // 3. In-App Interstitial (Otomatiikaan kan dhufu)
-        // Kun akkuma App-ichi banameen ofiin ni dhufa
+        // 2. Rewarded Popup
+        function runPopup() {
+            show_10850188('pop').then(() => {
+                alert('Badhaasa Popup fudhatteetta!');
+            }).catch(e => {
+                console.error("Popup error", e);
+            });
+        }
+
+        // 3. In-App Interstitial (Automatic background loading)
         show_10850188({
             type: 'inApp',
             inAppSettings: {
@@ -169,7 +181,6 @@
                 everyPage: false
             }
         });
-
     </script>
 </body>
 </html>
